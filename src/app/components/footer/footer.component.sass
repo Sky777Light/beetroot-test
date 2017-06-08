@@ -7,8 +7,12 @@ app-footer
   flex-direction: column
   align-items: center
   background-color: $main-color
+  color: $white
+  fill: red
+  text-transform: uppercase
+  font-size: 16px
   .footer-category, .footer-social
-    width: 100%
+    width: calc(100% - 20px)
     max-width: 1200px
     -webkit-box-sizing: border-box
     -moz-box-sizing: border-box
@@ -16,5 +20,41 @@ app-footer
   .footer-category
     height: 285px
     border-bottom: 1px solid $white
+    display: flex
+    justify-content: center
+    .footer-category-wrap
+      margin-top: 40px
+      display: flex
+      .categories
+        display: flex
+        margin-left: 100px
+        .category-col
+          display: flex
+          flex-direction: column
+          margin: 0 25px
+          .category-item
+            font-size: 13px
+            text-decoration: none
+            color: $white
+            margin-top: 12px
   .footer-social
     height: 110px
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    .social-wrap
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      height: 60%
+      .social-icons
+        display: flex
+        justify-content: space-between
+        svg
+          cursor: pointer
+          height: 18px
+          width: 18px
+          path
+            fill: $white
+
