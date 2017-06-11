@@ -1,1 +1,19 @@
 <div class="corner"></div>
+<div class="contact-info-wrap">
+    <span class="founders">PROUDLY OPPERATED BY ROD & JULLIE WALLER SINCE 2010</span>
+    <div class="contact-info">
+        <img src="./assets/resources/images/header/avatar.png" alt="">
+        <div class="contact-info-main">
+            <span class="phone-info">call {{serviceCenter.phone}}</span>
+            <span class="addr-info">{{serviceCenter.addr}}</span>
+            <span class="city-info">{{serviceCenter.city}}, {{serviceCenter.state}} {{serviceCenter.index}}</span>
+            <div class="location-ctrl">
+                <div class="loc-btn">CHANGE LOCATION</div>
+                <div class="get-dir loc-btn">GET DIRECTIONS</div>
+            </div>
+        </div>
+    </div>
+</div>
+<sebm-google-map [latitude]="serviceCenter.lat" [longitude]="serviceCenter.lng" [zoom]="16" [streetViewControl]="false" [zoomControl]="false">
+    <sebm-google-map-marker [latitude]="serviceCenter.lat" [longitude]="serviceCenter.lng"></sebm-google-map-marker>
+</sebm-google-map>

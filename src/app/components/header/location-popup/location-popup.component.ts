@@ -1,4 +1,6 @@
 import {Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
+import {ServiceCenterInterface} from "../../../interfaces/service-center";
+import {ServCenterService} from "../../../services/serv-center.service";
 
 @Component({
   selector: 'app-location-popup',
@@ -10,9 +12,17 @@ export class LocationPopupComponent implements OnInit {
   @Input() changeLocFlag: boolean;
   @Output() changeLocFlagChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  private serviceCenter: ServiceCenterInterface;
 
-  ngOnInit() {}
+  constructor(
+      private servCenterService: ServCenterService
+  ) {
+    this.serviceCenter = this.servCenterService.getServiceCenter();
+  }
+
+  ngOnInit() {
+
+  }
 
   changeLocation(){
     //request to change service center and then destroy component

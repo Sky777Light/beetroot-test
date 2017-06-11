@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
         //change service center data
         this.servCenterService.setServiceCenter(res.serviceCenter);
       }
-    }, (error) => {console.log(error);});
+    }, (error) => {});
   }
   
 }

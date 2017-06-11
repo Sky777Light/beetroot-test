@@ -9,7 +9,17 @@ import {ServiceCenterClass} from "../classes/service-center";
 export class ServCenterService {
 
   // create temporary service data
-  public serviceCenter: ServiceCenterInterface = new ServiceCenterClass(null,'(801) 783.32.80', '',  '3692 West 5400 South','Taylorsville', 84129, 'UT');
+  public serviceCenter: ServiceCenterInterface = new ServiceCenterClass(
+      null,
+      '(801) 783.32.80',
+      '',
+      '3692 West 5400 South',
+      'Taylorsville',
+      84129,
+      'UT',
+      40.653434,
+      -111.978877
+  );
 
   constructor(
       private storageService: StorageService,

@@ -5,5 +5,7 @@ export interface ServiceCenterInterface{
     addr: string,
     city: string,
     index: number,
-    state: string
+    state: string,
+    lat: number,
+    lng: number
 }

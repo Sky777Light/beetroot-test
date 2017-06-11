@@ -1,0 +1,5 @@
+<div class="day" [class.cols-week-6]="days.length > 35" [class.active]="selectedDate == day.timeStamp" [class.prev]="month !== day.month" *ngFor="let day of days"  (click)="selectDate(day.timeStamp, day.month)">
+  <div class="day-number" [class.prev]="day.month !== days[15].month">
+    <span>{{day.date}}</span>
+  </div>
+</div>

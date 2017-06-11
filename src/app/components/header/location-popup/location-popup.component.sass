@@ -6,9 +6,14 @@ app-location-popup
   right: 0
   width: 800px
   height: 200px
+  display: flex
+  justify-content: space-between
   padding: 25px 25px 0
   background-color: $white
   box-shadow: 0 1px 10px rgba(0,0,0,0.3)
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
   .corner
     position: absolute
     right: 10%
@@ -18,3 +23,49 @@ app-location-popup
     border-left: 15px solid transparent
     border-right: 15px solid transparent
     border-bottom: 15px solid $white
+  .contact-info-wrap
+    display: flex
+    flex-direction: column
+    .founders
+      font-size: 13px
+    .contact-info
+      margin-top: 25px
+      display: flex
+      img
+        height: 100px
+        width: 100px
+        border-radius: 50%
+      .contact-info-main
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        margin-left: 20px
+        span
+          line-height: 1.6
+          font-family: Hebrew-Light
+        .phone-info
+          color: $err
+          font-family: Hebrew-Bold
+        .location-ctrl
+          display: flex
+          color: $white
+          font-family: Hebrew-Bold
+          font-size: 13px
+          margin-top: 5px
+          .loc-btn
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 155px
+            height: 40px
+            border-radius: 5px
+            background-color: $err
+            cursor: pointer
+          .get-dir
+            margin-left: 10px
+            background-color: $btn-blue
+
+  sebm-google-map
+    width: 220px
+    height: 150px
+    border: 1px solid $light-grey

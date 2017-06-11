@@ -8,15 +8,19 @@ export class ServiceCenterClass  implements ServiceCenterInterface{
     public city: string;
     public index:number;
     public state: string;
+    public lat: number;
+    public lng: number;
 
     constructor(
-        id:number = null,
-        phone:string='',
-        img:string='',
-        addr:string='',
-        city:string='',
-        index:number=null,
-        state:string=''
+        id: number = null,
+        phone: string = '',
+        img: string = '',
+        addr: string = '',
+        city: string = '',
+        index: number = null,
+        state: string = '',
+        lat: number = null,
+        lng: number = null
     ){
         this._id = id;
         this.phone = phone;
@@ -25,6 +29,8 @@ export class ServiceCenterClass  implements ServiceCenterInterface{
         this.city = city;
         this.index = index;
         this.state = state;
+        this.lat = lat;
+        this.lng = lng;
     }
 
 }
