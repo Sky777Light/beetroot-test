@@ -10,6 +10,8 @@ export class ServiceCenterClass  implements ServiceCenterInterface{
     public state: string;
     public lat: number;
     public lng: number;
+    public services: any;
+    public vehicles: any;
 
     constructor(
         id: number = null,

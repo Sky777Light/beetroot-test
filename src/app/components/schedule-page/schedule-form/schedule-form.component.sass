@@ -27,53 +27,7 @@ app-schedule-form
       .form-block-tag
         font-family: Roboto-Medium
         font-size: 18px
-        font-weight: bold
         margin-bottom: 5px
-      input, .fake-input-wrap
-        border: 1px solid $main-color
-        border-radius: 3px
-        width: 240px
-        font-size: 13px
-        color: $main-color
-        font-weight: bold
-        padding: 0 20px
-        box-sizing: border-box
-      input::placeholder, .placeholder
-        color: $text-grey
-        text-transform: uppercase
-      input
-        height: 50px
-        &:focus
-          outline: none
-      .fake-input-wrap
-        position: absolute
-        top: 0
-        left: 0
-        background-color: $white
-        .time-picker
-          margin-bottom: 10px
-          .time-line
-            height: 30px
-            border-bottom: 1px solid $border-light
-            padding-left: 10px
-            display: flex
-            align-items: center
-            color: $black
-            cursor: pointer
-            &:hover
-              background-color: #efefef
-        .fake-input
-          width: 100%
-          height: 50px
-          display: flex
-          align-items: center
-          cursor: pointer
-          justify-content: space-between
-          svg
-            width: 22px
-            height: 22px
-            path, rect, polygon
-              fill: $svg-red
       .form-group
         display: flex
         margin-bottom: 30px
@@ -83,4 +37,58 @@ app-schedule-form
           flex-direction: column
           margin-right: 30px
           width: 240px
-          height: 50px
+          height: 52px
+          .fake-checkbox
+            display: flex
+            align-items: center
+            text-transform: capitalize
+            margin-bottom: 15px
+            .check-wrap
+              cursor: pointer
+              width: 17px
+              height: 17px
+              border: 1px solid $text-grey
+              margin-right: 5px
+              display: flex
+              align-items: center
+              justify-content: center
+              svg
+                width: 80%
+                height: 80%
+            span
+              margin: 0
+          .form-small
+            font-size: 13px
+            margin-bottom: 10px
+            font-weight: bold
+            display: flex
+            flex-direction: column
+          .light
+            color: $mid-grey
+          .dark
+            color: $dark-grey
+          .service-desc
+            white-space: nowrap
+            text-transform: initial
+            position: relative
+            top: -10px
+        .form-mess
+          width: 510px
+      .form-btn-wrap
+        justify-content: space-between
+        margin: 0
+        .form-btn
+          display: flex
+          justify-content: center
+          align-items: center
+          background-color: $white
+          color: $main-color
+          border: 1px solid $main-color
+          border-radius: 3px
+          height: 52px
+          width: 135px
+          margin-right: 47px
+          cursor: pointer
+          &:hover
+            background-color: $main-color
+            color: $white

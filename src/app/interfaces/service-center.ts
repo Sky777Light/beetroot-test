@@ -7,5 +7,7 @@ export interface ServiceCenterInterface{
     index: number,
     state: string,
     lat: number,
-    lng: number
+    lng: number,
+    services: any,
+    vehicles: any
 }

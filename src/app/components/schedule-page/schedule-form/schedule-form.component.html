@@ -1,14 +1,14 @@
 <span class="form-tag" (click)="clickon()">PLEASE SELECT A CONVENIENT TIME TO LEAVE YOUR VEHICLE WITH US</span>
 
-<form class="schedule-form" [formGroup]="myForm" (window:mouseup)="closeAllTabs()">
+<form class="schedule-form" (ngSubmit)="sendForm()" [formGroup]="myForm" (window:mouseup)="closeAllTabs()">
   <div class="blocks-wrap form-line">
     <span class="form-block-tag">DATE & TIME</span>
     <div class="form-group">
       <div class="block-wrap" style="z-index: 3;">
           <div class="fake-input-wrap">
-              <div class="fake-input" (click)="date1.select.date = true">
-                  <span *ngIf="date1.data.date">{{date1.data.date | date:"dd.MM.yyyy"}}</span>
-                  <span class="placeholder" *ngIf="!date1.data.date">Select a date</span>
+              <div class="fake-input" (click)="formData.date1.select.date = true">
+                  <span *ngIf="formData.date1.data.date">{{formData.date1.data.date | date:"dd.MM.yyyy"}}</span>
+                  <span class="placeholder" *ngIf="!formData.date1.data.date">Select a date</span>
                   <svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="calendar_1_">
                         <path d="M29.334,3H25V1c0-0.553-0.447-1-1-1s-1,0.447-1,1v2h-6V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v2H9V1   c0-0.553-0.448-1-1-1S7,0.447,7,1v2H2.667C1.194,3,0,4.193,0,5.666v23.667C0,30.806,1.194,32,2.667,32h26.667   C30.807,32,32,30.806,32,29.333V5.666C32,4.193,30.807,3,29.334,3z M30,29.333C30,29.701,29.701,30,29.334,30H2.667   C2.299,30,2,29.701,2,29.333V5.666C2,5.299,2.299,5,2.667,5H7v2c0,0.553,0.448,1,1,1s1-0.447,1-1V5h6v2c0,0.553,0.448,1,1,1   s1-0.447,1-1V5h6v2c0,0.553,0.447,1,1,1s1-0.447,1-1V5h4.334C29.701,5,30,5.299,30,5.666V29.333z" fill="#fd4b51"/>
@@ -24,15 +24,15 @@
                     </g>
                 </svg>
               </div>
-              <app-daypicker [hidden]="!date1.select.date" [(timeStamp)]="date1.data.date" (click)="date1.resol.date = true"></app-daypicker>
+              <app-daypicker [hidden]="!formData.date1.select.date" [(timeStamp)]="formData.date1.data.date" (click)="formData.date1.resol.date = true"></app-daypicker>
           </div>
-          <span class="empty-field" [hidden]="date1.resol.date">Please select date</span>
+          <span class="empty-field" [hidden]="formData.date1.resol.date">Please select date</span>
       </div>
       <div class="block-wrap" style="z-index: 3;">
           <div class="fake-input-wrap">
-              <div class="fake-input"  (click)="date1.select.time = true">
-                  <span *ngIf="date1.data.time.from">{{date1.data.time.from | date:"hh:mm"}} - {{date1.data.time.to | date:"hh:mm"}}</span>
-                  <span class="placeholder" *ngIf="!date1.data.time.from">Select a time</span>
+              <div class="fake-input"  (click)="formData.date1.select.time = true">
+                  <span *ngIf="formData.date1.data.time.from">{{formData.date1.data.time.from | date:"hh:mm"}} - {{formData.date1.data.time.to | date:"hh:mm"}}</span>
+                  <span class="placeholder" *ngIf="!formData.date1.data.time.from">Select a time</span>
                   <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g>
                             <path d="M24,2C11.9,2,2,11.9,2,24s9.9,22,22,22s22-9.9,22-22S36.1,2,24,2z M24,44C13,44,4,35,4,24C4,13,13,4,24,4c11,0,20,9,20,20   C44,35,35,44,24,44z"/>
@@ -40,21 +40,21 @@
                         </g>
                     </svg>
               </div>
-              <div class="time-picker" [hidden]="!date1.select.time">
-                  <div class="time-line" *ngFor="let line of workTimeArr" (click)="selectTime((line[0]-3)*3600000, (line[1]-3)*3600000, date1); date1.resol.time = true">
-                      {{(line[0]-3)*3600000 | date:"hh:mm"}} - {{(line[1]-3)*3600000 | date:"hh:mm"}}
+              <div class="time-picker" [hidden]="!formData.date1.select.time">
+                  <div class="time-line" *ngFor="let line of workTimeArr" (click)="selectTime((line[0]+timeZone), (line[1]+timeZone), formData.date1); formData.date1.resol.time = true">
+                      {{(line[0]+timeZone) | date:"hh:mm"}} - {{(line[1]+timeZone) | date:"hh:mm"}}
                   </div>
               </div>
           </div>
-          <span class="empty-field" [hidden]="date1.resol.time">Please select time</span>
+          <span class="empty-field" [hidden]="formData.date1.resol.time">Please select time</span>
       </div>
     </div>
     <div class="form-group">
       <div class="block-wrap" style="z-index: 2;">
           <div class="fake-input-wrap">
-              <div class="fake-input"  (click)="date2.select.date = true">
-                  <span *ngIf="date2.data.date">{{date2.data.date | date:"dd.MM.yyyy"}}</span>
-                  <span class="placeholder" *ngIf="!date2.data.date">Select a date</span>
+              <div class="fake-input"  (click)="formData.date2.select.date = true">
+                  <span *ngIf="formData.date2.data.date">{{formData.date2.data.date | date:"dd.MM.yyyy"}}</span>
+                  <span class="placeholder" *ngIf="!formData.date2.data.date">Select a date</span>
                   <svg enable-background="new 0 0 32 32" height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="calendar_1_">
                     <path d="M29.334,3H25V1c0-0.553-0.447-1-1-1s-1,0.447-1,1v2h-6V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v2H9V1   c0-0.553-0.448-1-1-1S7,0.447,7,1v2H2.667C1.194,3,0,4.193,0,5.666v23.667C0,30.806,1.194,32,2.667,32h26.667   C30.807,32,32,30.806,32,29.333V5.666C32,4.193,30.807,3,29.334,3z M30,29.333C30,29.701,29.701,30,29.334,30H2.667   C2.299,30,2,29.701,2,29.333V5.666C2,5.299,2.299,5,2.667,5H7v2c0,0.553,0.448,1,1,1s1-0.447,1-1V5h6v2c0,0.553,0.448,1,1,1   s1-0.447,1-1V5h6v2c0,0.553,0.447,1,1,1s1-0.447,1-1V5h4.334C29.701,5,30,5.299,30,5.666V29.333z" fill="#fd4b51"/>
@@ -70,14 +70,14 @@
                 </g>
             </svg>
               </div>
-              <app-daypicker [hidden]="!date2.select.date" [(timeStamp)]="date2.data.date"></app-daypicker>
+              <app-daypicker [hidden]="!formData.date2.select.date" [(timeStamp)]="formData.date2.data.date"></app-daypicker>
           </div>
       </div>
       <div class="block-wrap" style="z-index: 2;">
           <div class="fake-input-wrap">
-              <div class="fake-input" (click)="date2.select.time = true">
-                  <span *ngIf="date2.data.time.from">{{date2.data.time.from | date:"hh:mm"}} - {{date2.data.time.to | date:"hh:mm"}}</span>
-                  <span class="placeholder" *ngIf="!date2.data.time.from">Select a time</span>
+              <div class="fake-input" (click)="formData.date2.select.time = true">
+                  <span *ngIf="formData.date2.data.time.from">{{formData.date2.data.time.from | date:"hh:mm"}} - {{formData.date2.data.time.to | date:"hh:mm"}}</span>
+                  <span class="placeholder" *ngIf="!formData.date2.data.time.from">Select a time</span>
                   <svg id="Layer_1" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g>
                         <path d="M24,2C11.9,2,2,11.9,2,24s9.9,22,22,22s22-9.9,22-22S36.1,2,24,2z M24,44C13,44,4,35,4,24C4,13,13,4,24,4c11,0,20,9,20,20   C44,35,35,44,24,44z"/>
@@ -85,17 +85,103 @@
                     </g>
                 </svg>
               </div>
-              <div class="time-picker" [hidden]="!date2.select.time">
-                  <div class="time-line" *ngFor="let line of workTimeArr" (click)="selectTime((line[0]-3)*3600000, (line[1]-3)*3600000, date2)">
-                      {{(line[0]-3)*3600000 | date:"hh:mm"}} - {{(line[1]-3)*3600000 | date:"hh:mm"}}
+              <div class="time-picker" [hidden]="!formData.date2.select.time">
+                  <div class="time-line" *ngFor="let line of workTimeArr" (click)="selectTime((line[0]+timeZone), (line[1]+timeZone), formData.date2)">
+                      {{(line[0]+timeZone) | date:"hh:mm"}} - {{(line[1]+timeZone) | date:"hh:mm"}}
                   </div>
               </div>
           </div>
       </div>
     </div>
+    <div class="form-group m-0">
+        <div class="block-wrap" >
+            <span class="form-block-tag">Store Hours</span>
+            <div>
+                <div class="form-small">
+                    <span class="light">Mon - Wed</span>
+                    <span class="dark">08:00 AM - 05:00PM</span>
+                </div>
+                <div class="form-small">
+                    <span class="light">Thu</span>
+                    <span class="dark">08:00 AM - 04:00PM</span>
+                </div>
+                <div class="form-small">
+                    <span class="light">Fri</span>
+                    <span class="dark">08:00 AM - 01:00PM</span>
+                </div>
+                <div class="form-small">
+                    <span class="light">Sat</span>
+                    <span class="dark">Close</span>
+                </div>
+            </div>
+        </div>
+        <div class="block-wrap" formArrayName="ServiceList">
+            <span class="form-block-tag service-tag">Choose your services</span>
+            <div>
+                <span class="light form-small service-desc">Please select the type of service(s) needed</span>
+
+                <div class="fake-checkbox" #ckbx *ngFor="let service of Services; let i = index" (click)="changeCkbx(service.Name, ckbx)">
+                    <div class="check-wrap">
+                        <svg *ngIf="ckbx.checked" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 26 26">
+                            <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z"/>
+                        </svg>
+                    </div>
+                    <span class="light form-small">{{service.Name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 
   <div class="blocks-wrap">
-
+      <span class="form-block-tag">Your Vehicle</span>
+      <div class="form-group">
+          <div class="block-wrap" style="z-index: 3;">
+              <input type="number" placeholder="year of car" formControlName="YearOfCar">
+          </div>
+          <div class="block-wrap" style="z-index: 3;">
+              <div class="fake-input-wrap">
+                  <div class="fake-input"  (click)="formData.vehicle.select = true">
+                      <span *ngIf="formData.vehicle.id">{{formData.vehicle.name}}</span>
+                      <span class="placeholder" *ngIf="!formData.vehicle.id">Select your car</span>
+                      <svg class="car-type" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                          viewBox="0 0 386.257 386.257" style="enable-background:new 0 0 386.257 386.257;" xml:space="preserve">
+                          <polygon points="0,96.879 193.129,289.379 386.257,96.879 "/>
+                      </svg>
+                  </div>
+                  <div class="time-picker" [hidden]="!formData.vehicle.select">
+                      <div class="time-line" *ngFor="let line of Vehicles" (click)="formData.vehicle.id = line.id; formData.vehicle.name = line.Name;">
+                          {{line.Name}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <input class="form-mess" type="text" placeholder="write your message" formControlName="Message">
+      </div>
+      <div class="form-group">
+          <div class="block-wrap">
+              <input type="text" placeholder="First Name" formControlName="FirstName">
+              <span class="empty-field" *ngIf="myForm.controls['FirstName'].invalid && myForm.controls['FirstName'].touched">Please enter your name</span>
+          </div>
+          <div class="block-wrap">
+              <input type="text" placeholder="Second Name" formControlName="SecondName">
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="block-wrap">
+              <input type="email" placeholder="e-mail" formControlName="Email">
+              <span class="empty-field" *ngIf="myForm.controls['Email'].pristine && myForm.controls['Email'].touched">Please enter your e-mail</span>
+              <span class="empty-field" *ngIf="myForm.controls['Email'].invalid && myForm.controls['Email'].dirty">Email is not correct</span>
+          </div>
+          <div class="block-wrap">
+              <input type="number" placeholder="phone number" formControlName="Phone">
+          </div>
+      </div>
+      <div class="form-group form-btn-wrap">
+          <button type="reset" class="form-btn" (click)="clearForm()">Clear</button>
+          <button type="submit" class="form-btn">Send</button>
+      </div>
   </div>
 </form>

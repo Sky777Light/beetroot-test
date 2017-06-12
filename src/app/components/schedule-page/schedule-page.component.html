@@ -3,8 +3,14 @@
   <div class="sched-bot-item">
     <span class="sched-bot-tag">SIGN UP FOR SPECIAL OFFERS</span>
     <span class="shed-bot-desc">Enter your mail and you will get the best<br>  offers we have directlly to your inbox</span>
-    <div class="sign-up-spec">
-    </div>
+    <form [formGroup]="specOffer" class="sign-up-spec" (ngSubmit)="sendForm()">
+      <div class="form-group">
+        <input type="email" placeholder="enter here your email" formControlName="Email">
+        <button type="submit" class="form-btn">Send</button>
+      </div>
+      <span class="empty-field" *ngIf="specOffer.controls['Email'].pristine && specOffer.controls['Email'].touched">Please enter your e-mail</span>
+      <span class="empty-field" *ngIf="specOffer.controls['Email'].invalid && specOffer.controls['Email'].dirty">Email is not correct</span>
+    </form>
   </div>
   <div class="sched-bot-or">
     <div class="line"></div>
