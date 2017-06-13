@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChildren, QueryList, ElementRef} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators, FormArray} from '@angular/forms';
 
+declare var alertify;
+
 @Component({
   selector: 'app-schedule-form',
   templateUrl: './schedule-form.component.html',
@@ -82,6 +84,35 @@ export class ScheduleFormComponent implements OnInit {
       Phone: [null]
     });
 
+
+  //build alertify popup
+
+    alertify.dialog('afterSubmit', () => {
+      return {
+        main: function (message) {
+          this.message = message;
+        },
+        setup: function () {
+          return {
+            options: {
+              movable: false,
+              frameless: true,
+              resizable: false,
+              transition: "zoom"
+            }
+          };
+        },
+        hooks:{
+          onshow: function(){
+            setTimeout(()=>this.close(), 2000);
+          }
+        },
+        prepare: function () {
+          this.setContent(this.message);
+        }
+      }
+    });
+
   }
 
   selectTime(from: number, to: number, date: any){
@@ -138,14 +169,14 @@ export class ScheduleFormComponent implements OnInit {
   sendForm(){
     let resol = this.checkResol();
 
-    if(!resol)console.log(123);
-
     Object.keys(this.myForm.controls).map((controlName) => {
       this.myForm.get(controlName).markAsTouched({onlySelf: true});
     });
 
+    if(!resol)return;
+
     if (this.myForm.valid) {
-      console.log("Form Submitted!");
+      alertify.afterSubmit("Thank's for using our service");
       this.clearForm();
     }
   }
