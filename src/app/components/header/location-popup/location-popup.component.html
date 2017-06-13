@@ -8,8 +8,8 @@
             <span class="addr-info">{{serviceCenter.addr}}</span>
             <span class="city-info">{{serviceCenter.city}}, {{serviceCenter.state}} {{serviceCenter.index}}</span>
             <div class="location-ctrl">
-                <div class="loc-btn">CHANGE LOCATION</div>
-                <div class="get-dir loc-btn">GET DIRECTIONS</div>
+                <div class="loc-btn" (click)="changeLocation()">CHANGE LOCATION</div>
+                <div class="get-dir loc-btn" (click)="getDirection()">GET DIRECTIONS</div>
             </div>
         </div>
     </div>

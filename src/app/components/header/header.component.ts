@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ServiceCenterInterface} from "../../interfaces/service-center";
 import {AuthService} from "../../services/auth.service";
 import {ServCenterService} from "../../services/serv-center.service";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-header',
@@ -15,16 +16,19 @@ export class HeaderComponent implements OnInit {
   
   constructor(
       private authService: AuthService,
-      private servCenterService: ServCenterService
+      private servCenterService: ServCenterService,
+      private storageService: StorageService
   ) {}
 
   ngOnInit() {
     this.serviceCenter = this.servCenterService.getServiceCenter();
-    this.authService.get('/api/service-center').subscribe((res: any) => {
+    
+    //get service center data
+    this.authService.post('/api/service-center', {id: this.storageService.get('serviceCenter')}).subscribe((res: any) => {
       res = res.json();
       if(res.status) {
         //change service center data
-        this.servCenterService.setServiceCenter(res.serviceCenter);
+        this.servCenterService.setServiceCenter(res.ServiceCenter);
       }
     }, (error) => {});
   }

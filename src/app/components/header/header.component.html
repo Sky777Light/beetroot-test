@@ -5,7 +5,7 @@
       <div class="contacts-top">
         <span class="contacts-top-link">Schedule an appointment</span>
         <span class="contacts-top-link" (click)="changeLocFlag = !changeLocFlag">Locate a service center</span>
-        <app-location-popup [(changeLocFlag)]="changeLocFlag" *ngIf="changeLocFlag" ></app-location-popup>
+        <app-location-popup [serviceCenter]="serviceCenter" [(changeLocFlag)]="changeLocFlag" *ngIf="changeLocFlag" ></app-location-popup>
       </div>
       <div class="contacts-bot">
         <div class="location">

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
+
+declare var alertify;
 
 @Component({
   selector: 'app-schedule-page',
@@ -10,7 +13,8 @@ export class SchedulePageComponent implements OnInit {
   public specOffer: FormGroup;
 
   constructor(
-      private _fb: FormBuilder
+      private _fb: FormBuilder,
+      private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -24,7 +28,16 @@ export class SchedulePageComponent implements OnInit {
     this.specOffer.controls["Email"].markAsTouched({onlySelf: true});
 
     if (this.specOffer.valid) {
-      console.log("Form Submitted!");
+
+      this.authService.post('/api/subscribe', this.specOffer).subscribe((res: any) => {
+        res = res.json();
+        if(res.status) {
+          alertify.success('Subscription complete!');
+        } else {
+          alertify.error('Error');
+        }
+      }, (error) => {});
+
       this.specOffer.reset();
     }
   }
